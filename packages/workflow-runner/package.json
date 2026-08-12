@@ -1,5 +1,5 @@
 {
-  "name": "@tuquet/automa-core",
+  "name": "@tuquet/workflow-runner",
   "version": "0.1.0",
   "description": "Environment-agnostic Core Execution Engine for Automa workflows",
   "main": "dist/index.js",

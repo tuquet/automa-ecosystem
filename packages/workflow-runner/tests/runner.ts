@@ -16,7 +16,7 @@ const __dirname = dirname(__filename);
 
 async function runE2ETest() {
   console.log('====================================================');
-  console.log('  @tuquet/automa-core - E2E Verification Runner     ');
+  console.log('  @tuquet/workflow-runner - E2E Verification Runner     ');
   console.log('====================================================\n');
 
   // 1. Instantiate Mock Browser Adapter
