@@ -124,13 +124,13 @@ export class UsersRepository {
     private dataSource: DataSource,
   ) {}
 
-  async createWithProfile(
+  async createWithBrowser(
     userData: CreateUserDto,
-    profileData: CreateProfileDto,
+    browserData: CreateBrowserDto,
   ): Promise<User> {
     return this.dataSource.transaction(async (manager) => {
       const user = await manager.save(User, userData);
-      await manager.save(Profile, { ...profileData, userId: user.id });
+      await manager.save(Browser, { ...browserData, userId: user.id });
       return user;
     });
   }

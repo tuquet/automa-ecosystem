@@ -68,7 +68,7 @@ export class UsersService {
   }
 
   // Fetch relations only when needed
-  async getFullProfile(id: string): Promise<User> {
+  async getFullBrowser(id: string): Promise<User> {
     return this.repo.findOne({
       where: { id },
       relations: ['posts'], // Only immediate relation

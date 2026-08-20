@@ -173,7 +173,7 @@ export class UsersController {
 
   @Get('me')
   @SerializeOptions({ groups: ['owner'] })
-  async getProfile(@CurrentUser() user: User): Promise<UserDto> {
+  async getBrowser(@CurrentUser() user: User): Promise<UserDto> {
     // Returns: { id, name, settings }
   }
 }

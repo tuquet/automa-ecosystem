@@ -2803,7 +2803,7 @@ export class UsersService {
   }
 
   // Fetch relations only when needed
-  async getFullProfile(id: string): Promise<User> {
+  async getFullBrowser(id: string): Promise<User> {
     return this.repo.findOne({
       where: { id },
       relations: ['posts'], // Only immediate relation
@@ -3126,7 +3126,7 @@ describe('Protected Routes (e2e)', () => {
       .expect(401);
   });
 
-  it('should return user profile with valid token', () => {
+  it('should return user browser with valid token', () => {
     return request(app.getHttpServer())
       .get('/users/me')
       .set('Authorization', `Bearer ${authToken}`)
@@ -3890,13 +3890,13 @@ export class UsersRepository {
     private dataSource: DataSource,
   ) {}
 
-  async createWithProfile(
+  async createWithBrowser(
     userData: CreateUserDto,
-    profileData: CreateProfileDto,
+    browserData: CreateBrowserDto,
   ): Promise<User> {
     return this.dataSource.transaction(async (manager) => {
       const user = await manager.save(User, userData);
-      await manager.save(Profile, { ...profileData, userId: user.id });
+      await manager.save(Browser, { ...browserData, userId: user.id });
       return user;
     });
   }
@@ -4081,7 +4081,7 @@ export class UsersController {
 
   @Get('me')
   @SerializeOptions({ groups: ['owner'] })
-  async getProfile(@CurrentUser() user: User): Promise<UserDto> {
+  async getBrowser(@CurrentUser() user: User): Promise<UserDto> {
     // Returns: { id, name, settings }
   }
 }

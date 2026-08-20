@@ -132,7 +132,7 @@ describe('Protected Routes (e2e)', () => {
       .expect(401);
   });
 
-  it('should return user profile with valid token', () => {
+  it('should return user browser with valid token', () => {
     return request(app.getHttpServer())
       .get('/users/me')
       .set('Authorization', `Bearer ${authToken}`)
