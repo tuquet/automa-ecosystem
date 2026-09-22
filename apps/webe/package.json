@@ -1,5 +1,5 @@
 {
-  "name": "automa",
+  "name": "@automa/webe",
   "private": true,
   "version": "1.0.0",
   "description": "An extension for automating your browser by connecting blocks",

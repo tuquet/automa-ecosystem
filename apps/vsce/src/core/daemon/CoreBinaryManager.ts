@@ -35,6 +35,34 @@ export const CoreBinaryManager = {
 		const workspaceFolders = vscode.workspace.workspaceFolders || [];
 
 		for (const folder of workspaceFolders) {
+			const candidateReleaseApps = path.join(
+				folder.uri.fsPath,
+				"apps",
+				"core",
+				"target",
+				"release",
+				exeName,
+			);
+			if (fs.existsSync(candidateReleaseApps)) {
+				Logger.info(
+					`Found local Automa Core Engine (release): ${candidateReleaseApps}`,
+				);
+				return candidateReleaseApps;
+			}
+			const candidateDebugApps = path.join(
+				folder.uri.fsPath,
+				"apps",
+				"core",
+				"target",
+				"debug",
+				exeName,
+			);
+			if (fs.existsSync(candidateDebugApps)) {
+				Logger.info(
+					`Found local Automa Core Engine (debug): ${candidateDebugApps}`,
+				);
+				return candidateDebugApps;
+			}
 			const candidateRelease = path.join(
 				folder.uri.fsPath,
 				"automa-core",
@@ -65,6 +93,12 @@ export const CoreBinaryManager = {
 
 		// Also check relative to __dirname
 		const relCandidates = [
+			path.resolve(__dirname, "../core/target/release", exeName),
+			path.resolve(__dirname, "../core/target/debug", exeName),
+			path.resolve(__dirname, "../../core/target/release", exeName),
+			path.resolve(__dirname, "../../core/target/debug", exeName),
+			path.resolve(__dirname, "../../../apps/core/target/release", exeName),
+			path.resolve(__dirname, "../../../apps/core/target/debug", exeName),
 			path.resolve(
 				__dirname,
 				"../../../../automa-core/target/release",
